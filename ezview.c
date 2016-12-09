@@ -28,10 +28,14 @@ typedef struct {
 // (-1, -1) (1, -1)
 
 Vertex vertexes[] = {
-  {{1, -1}, {0.99999, 0}},
-  {{1, 1},  {0.99999, 0.99999}},
-  {{-1, 1}, {0, 0.99999}}
+			{{  1  , -1  }  ,  {0.99999, 0.99999 } },
+            {{  1  ,  1  }  ,  { 0.99999, 0.00000 } },
+            {{ -1  ,  1  }  ,  { 0.00000, 0.00000 } },
+            {{ -1  ,  1  }  ,  { 0.00000, 0.00000 } },
+            {{ -1  , -1  }  ,  { 0.00000, 0.99999 } },
+            {{ 1  , -1  }  ,  { 0.99999, 0.99999 } }
 };
+
 
 static const char* vertex_shader_text =
 "uniform mat4 MVP;\n"
@@ -169,22 +173,19 @@ int initialize_window(){
     glEnableVertexAttribArray(texcoord_location);
     glVertexAttribPointer(texcoord_location, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*) (sizeof(float) * 2));
 
-    //TODO: Specify elsewhere / get from PPM
-    image_width = 4;
-    image_height = 4;
-
     GLuint texID;
     glGenTextures(1, &texID);
     glBindTexture(GL_TEXTURE_2D, texID);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, image_width, image_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, image_width, image_height, 0, GL_RGB, GL_UNSIGNED_BYTE, pixmap);
 
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, texID);
     glUniform1i(tex_location, 0);
-
+    
+	return 1;
 }
 
 int main(int argc, char* argv[])
@@ -214,8 +215,19 @@ int main(int argc, char* argv[])
 	else if(strcmp(magicNumber,"P6") == 0){
 		readP6(input, pixmap, image_width, image_height);
 	}
+	else{
+		fprintf(stderr, "Error: magic number is incorrect\n");
+		exit(1);
+	}
 
-	//printf("Successfully read file. num: %s, width: %d, height: %d, scale: %d\n", magicNumber, image_width, image_height, scale);
+	/*printf("Successfully read file. num: %s, width: %d, height: %d, scale: %d\n", magicNumber, image_width, image_height, scale);
+
+	FILE* output = fopen("outtest.ppm", "w");
+	if(!input){
+		fprintf(stderr, "Error: Cannot open output file.");
+		return 1;
+	}
+	writeP3(output, pixmap, image_width, image_height, scale);*/
 
     initialize_window();
 
@@ -232,10 +244,10 @@ int main(int argc, char* argv[])
         glViewport(0, 0, width, height);
         glClear(GL_COLOR_BUFFER_BIT);
 
-        mat4x4_identity(m);
+        /*mat4x4_identity(m);
         mat4x4_rotate_Z(m, m, (float) glfwGetTime());
         mat4x4_ortho(p, -ratio, ratio, -1.f, 1.f, 1.f, -1.f);
-        mat4x4_mul(mvp, p, m);
+        mat4x4_mul(mvp, p, m);*/
 
         glUseProgram(program);
         glUniformMatrix4fv(mvp_location, 1, GL_FALSE, (const GLfloat*) mvp);
