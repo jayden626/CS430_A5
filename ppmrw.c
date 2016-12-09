@@ -1,6 +1,6 @@
 /**
  * Author: Jayden Urch
- * Date: 09/16/2016
+ * Date: 12/08/2016
  * Student No: 5388406 / jsu22
  *
  * This program can be used to read a P3 or P6 PPM file into memory

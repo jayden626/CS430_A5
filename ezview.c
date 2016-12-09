@@ -1,3 +1,8 @@
+/*
+ * Author: Jayden Urch
+ * Date: 12/08/2016
+ * Student No: 5388406 / jsu22
+ */
 #define GLFW_DLL 1
 #define GL_GLEXT_PROTOTYPES
 #define GL_FRAGMENT_PRECISION_HIGH 1
