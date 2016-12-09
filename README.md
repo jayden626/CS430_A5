@@ -9,20 +9,20 @@ Correct usage of this program is ProgramName FileName.ppm
 
 ### Keyboard Shortcuts
 
-| Key        			| Effect           |
-| --------------------- |-----------------------|
-| UP arrow     			| Translate image up 	|
-| DOWN arrow    		| Translate image down	|
-| LEFT arrow     		| Translate image left	|
-| RIGHT arrow     		| Translate image right |
-| SHIFT + UP arrow     	| Shear image up 		|
-| SHIFT + DOWN arrow    | Shear image down 		|
-| SHIFT + LEFT arrow    | Shear image left 		|
-| SHIFT + RIGHT arrow   | Shear image right 	|
-| COMMA 				| Decrease scale 		|
-| PERIOD 				| Increase scale 		|
-| SHIFT + COMMA 		| Rotate left 			|
-| SHIFT + PERIOD 		| Rotate Right 			|
+| Key        			| Effect           			|
+| --------------------- | ------------------------- |
+| UP arrow     			| Translate image up 		|
+| DOWN arrow    		| Translate image down		|
+| LEFT arrow     		| Translate image left		|
+| RIGHT arrow     		| Translate image right 	|
+| SHIFT + UP arrow     	| Shear image up 			|
+| SHIFT + DOWN arrow    | Shear image down 			|
+| SHIFT + LEFT arrow    | Shear image left 			|
+| SHIFT + RIGHT arrow   | Shear image right 		|
+| COMMA 				| Decrease scale 			|
+| PERIOD 				| Increase scale 			|
+| SHIFT + COMMA 		| Rotate left 10 degrees	|
+| SHIFT + PERIOD 		| Rotate Right 10 degrees	|
 
 
 ### Notes

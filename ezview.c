@@ -99,7 +99,7 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
 
 	//Decrease scale, rotate left if shift is held
 	if (key == GLFW_KEY_COMMA && mods == GLFW_MOD_SHIFT && action == GLFW_PRESS){
-        rotation += 90*M_PI/180;
+        rotation += 10*M_PI/180;
     }
     else if (key == GLFW_KEY_COMMA && action == GLFW_PRESS){
         scale /= 1.1;
@@ -107,7 +107,7 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
 
 	//Increase scale, rotate right if shift is held
 	if (key == GLFW_KEY_PERIOD && mods == GLFW_MOD_SHIFT && action == GLFW_PRESS){
-        rotation -= 90*M_PI/180;
+        rotation -= 10*M_PI/180;
     }
     else if (key == GLFW_KEY_PERIOD && action == GLFW_PRESS){
         scale *= 1.1;
@@ -240,7 +240,7 @@ int main(int argc, char* argv[])
 	}
 	else if(strcmp(magicNumber,"P6") == 0){
 		readP6(input, pixmap, image_width, image_height);
-		fprintf("Program does not work with P6 images, displays black screen. Could not figure out why");
+		fprintf(stderr, "Program does not work with P6 images, displays black screen. Could not figure out why");
 	}
 	else{
 		fprintf(stderr, "Error: magic number is incorrect\n");
