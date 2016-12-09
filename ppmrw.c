@@ -15,7 +15,7 @@
 #include "ppmrw.h"
 
 //Main function.
-int main(int argc, char* argv[]) {
+/*int main(int argc, char* argv[]) {
 	RGBpixel* pixmap;
 	FILE* input;
 	FILE* output;
@@ -71,7 +71,7 @@ int main(int argc, char* argv[]) {
 	int inputClose = fclose(input);
 	int outputClose = fclose(output);
 	return 0;
-}
+}*/
 
 int readHeader(FILE* file, char* thisMagicNumber, int* thisWidth, int* thisHeight, int* thisScale){
 
@@ -80,6 +80,7 @@ int readHeader(FILE* file, char* thisMagicNumber, int* thisWidth, int* thisHeigh
 	fscanf(file,"%s",thisMagicNumber);
 	if(strcmp(thisMagicNumber, "P3") != 0 && strcmp(thisMagicNumber, "P6") != 0){
 		fprintf(stderr, "Error: Magic number is incorrect. Expected \"P3\" or \"P6\", got %s.", *thisMagicNumber);
+		exit(1);
 	}
 
 	//Read in all comment lines. The last read value will contain the width. Works with zero or many comments

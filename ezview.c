@@ -11,8 +11,10 @@
 #include <stdio.h>
 #include <assert.h>
 
-int image_width;
-int image_height;
+int image_width, image_height, scale;
+char magicNumber[255];
+RGBpixel* pixmap;
+
 GLFWwindow* window;
 GLuint vertex_buffer, vertex_shader, fragment_shader, program;
 GLint mvp_location, vpos_location, vcol_location, texcoord_location, tex_location;
@@ -188,12 +190,32 @@ int initialize_window(){
 int main(int argc, char* argv[])
 {
 
+	printf("Starting\n");
+
 	if(argc != 2){
-		fprintf("Error: Incorrect number of arguments. Proper usage is programName filename.ppm\n");
+		fprintf(stderr, "Error: Incorrect number of arguments. Proper usage is programName filename.ppm\n");
 		exit(1);
 	}
 
+	FILE* input = fopen(argv[1], "r");
+	if(!input){
+		fprintf(stderr, "Error: Cannot open input file.");
+		return 1;
+	}
 
+	readHeader(input, magicNumber, &image_width, &image_height, &scale);
+	//Initialize pixmap
+	pixmap = malloc(sizeof(RGBpixel)*image_height*image_width*3);
+	
+	//Check magicNumber and use appropriate read function
+	if(strcmp(magicNumber,"P3") == 0){
+		readP3(input, pixmap, image_width, image_height, scale);
+	}
+	else if(strcmp(magicNumber,"P6") == 0){
+		readP6(input, pixmap, image_width, image_height);
+	}
+
+	//printf("Successfully read file. num: %s, width: %d, height: %d, scale: %d\n", magicNumber, image_width, image_height, scale);
 
     initialize_window();
 

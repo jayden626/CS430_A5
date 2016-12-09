@@ -1,3 +1,3 @@
 all:
-	cl /MD /I. *.lib texdemo.c
+	cl /MD /I. *.lib ppmrw.c ezview.c /link /out:ezview.exe
 
