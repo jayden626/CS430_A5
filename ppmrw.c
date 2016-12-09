@@ -242,9 +242,6 @@ void readP3(FILE* input, RGBpixel* map, int width, int height, int scale){
  */
 void readP6(FILE* input, RGBpixel* map, int width, int height){
 	fread(map, sizeof(RGBpixel), height*width*3, input);
-
-	/*FILE* output = fopen("outMethod.ppm", "w");
-	writeP6(output, map, width, height, 255);*/
 }
 
 
